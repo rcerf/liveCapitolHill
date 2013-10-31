@@ -10,7 +10,7 @@ if(config == undefined || config.apikey == undefined || config.apikey == ""){
 
 var app = express();
 
-//Configure tempate engine
+//Configure template engine
 app.engine('html', consolidate.handlebars);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
@@ -21,8 +21,6 @@ app.use(express.static(__dirname + '/public'));
 var legislator = 'A000014';
 var method = 'votes';
 var field = 'voter_ids.'
-
-//basepoint+this.collection+"/?apikey="+this.apikey+this.query;
 
 
 //Paste your values
@@ -41,7 +39,7 @@ app.get('/',function(req, res){
       } 
       //Render template with story object in response body
       console.log(sunlightResponse.body);
-      return res.render('index',sunlightResponse.body);      
+      return res.render('index', sunlightResponse.body);      
     })
 
 })
