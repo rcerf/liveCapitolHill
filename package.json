@@ -1,7 +1,7 @@
 {
   "name": "sfy-gallery",
   "version": "0.0.1",
-  "description": "Instagram Gallery: Storify API example written in Node.js",
+  "description": "Live updates of Legislator's actions on Capitol Hill",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,9 +10,10 @@
     "express": "3.2.5",
     "superagent": "0.14.6",
     "consolidate": "0.9.1",
-    "handlebars": "1.0.12"
+    "handlebars": "1.0.12",
+    "bookshelf": "~0.5.7",
+    "mysql": "~2.0.0-alpha9"
   },
-  "repository": "https://github.com/storify/sfy-gallery",
-  "author": "Azat Mardanov",
-  "license": "BSD"
+  "author": "Rick Cerf",
+  "license": "MIT"
 }

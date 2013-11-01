@@ -19,8 +19,12 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
 var legislator = 'A000014';
-var method = 'votes';
-var field = 'voter_ids.'
+var method = 'votes/';
+var field1 = 'voter_ids.';
+var bill = 'hr384-111';
+var field2 = 'bill_id.';
+
+//"http://congress.api.sunlightfoundation.com/" + method +"?" + field1 + legislator +"__exists=true" + "&voted_at__gte=2013-07-02T4:00:00Z"
 
 
 //Paste your values
@@ -28,7 +32,8 @@ var api_key = config.apikey;
 
 app.get('/',function(req, res){
   //Fetch elements from Sunlight API
-  superagent.get("http://congress.api.sunlightfoundation.com/" + method +"?" + field + legislator + "__exists=true")
+  superagent.get("http://congress.api.sunlightfoundation.com/" + 
+    method +"?" + field1 + legislator +"__exists=true" + "&fields=breakdown.total")
     .set('X-APIKey', api_key)
     .set({  Accept: 'application/json' })
     .end(function(e, sunlightResponse){
