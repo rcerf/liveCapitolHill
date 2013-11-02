@@ -33,7 +33,7 @@ var api_key = config.apikey;
 app.get('/',function(req, res){
   //Fetch elements from Sunlight API
   superagent.get("http://congress.api.sunlightfoundation.com/" + 
-    method +"?" + field1 + legislator +"__exists=true" + "&fields=breakdown.total")
+    method +"?" + field1 + legislator +"__exists=true")
     .set('X-APIKey', api_key)
     .set({  Accept: 'application/json' })
     .end(function(e, sunlightResponse){
