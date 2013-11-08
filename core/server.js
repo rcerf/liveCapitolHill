@@ -4,7 +4,6 @@ var consolidate = require('consolidate');
 var path = require('path');
 var config = require(path.join(__dirname, '/config.js'));
 var mysql = require('mysql');
-var Bookshelf = require('bookshelf');
 var Models = require('./models/base.js');
 
 

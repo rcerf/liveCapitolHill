@@ -17,4 +17,4 @@ var Nominations = liveBookshelf.Collection.extend({
 module.exports = {
   Nomination: Nomination,
   Nominations: Nominations
-};
+}; 
