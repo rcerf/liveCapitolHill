@@ -1,21 +1,17 @@
 // # Ghost Data API
 // Provides access to the data model
 
-var Ghost        = require('../../ghost'),
-    _            = require('underscore'),
+var _            = require('underscore'),
     when         = require('when'),
     errors       = require('../errorHandling'),
     permissions  = require('../permissions'),
     db           = require('./db'),
     canThis      = permissions.canThis,
 
-    ghost        = new Ghost(),
-    dataProvider = ghost.dataProvider,
+    dataProvider = require('../../models'),
     posts,
     users,
     tags,
-    notifications,
-    settings,
     requestHandler,
     settingsObject,
     settingsCollection,
@@ -233,154 +229,6 @@ tags = {
     all: function browse() {
         // **returns:** a promise for all tags which have previously been used in a json object
         return dataProvider.Tag.findAll();
-    }
-};
-
-// ## Notifications
-notifications = {
-    // #### Destroy
-
-    // **takes:** an identifier (id)
-    destroy: function destroy(i) {
-        ghost.notifications = _.reject(ghost.notifications, function (element) {
-            return element.id === i.id;
-        });
-        // **returns:** a promise for remaining notifications as a json object
-        return when(ghost.notifications);
-    },
-
-    // #### Add
-
-    // **takes:** a notification object of the form
-    // ```
-    //  msg = {
-    //      type: 'error', // this can be 'error', 'success', 'warn' and 'info'
-    //      message: 'This is an error', // A string. Should fit in one line.
-    //      status: 'persistent', // or 'passive'
-    //      id: 'auniqueid' // A unique ID
-    //  };
-    // ```
-    add: function add(notification) {
-        // **returns:** a promise for all notifications as a json object
-        return when(ghost.notifications.push(notification));
-    }
-};
-
-// ## Settings
-
-// ### Helpers
-// Turn a settings collection into a single object/hashmap
-settingsObject = function (settings) {
-    if (_.isObject(settings)) {
-        return _.reduce(settings, function (res, item, key) {
-            if (_.isArray(item)) {
-                res[key] = item;
-            } else {
-                res[key] = item.value;
-            }
-            return res;
-        }, {});
-    }
-    return (settings.toJSON ? settings.toJSON() : settings).reduce(function (res, item) {
-        if (item.toJSON) { item = item.toJSON(); }
-        if (item.key) { res[item.key] = item.value; }
-        return res;
-    }, {});
-};
-// Turn an object into a collection
-settingsCollection = function (settings) {
-    return _.map(settings, function (value, key) {
-        return { key: key, value: value };
-    });
-};
-
-// Filters an object based on a given filter object
-settingsFilter = function (settings, filter) {
-    return _.object(_.filter(_.pairs(settings), function (setting) {
-        if (filter) {
-            return _.some(filter.split(','), function (f) {
-                return setting[1].type === f;
-            });
-        }
-        return true;
-    }));
-};
-
-settings = {
-    // #### Browse
-
-    // **takes:** options object
-    browse: function browse(options) {
-        // **returns:** a promise for a settings json object
-        if (ghost.settings()) {
-            return when(ghost.settings()).then(function (settings) {
-                //TODO: omit where type==core
-                return settingsObject(settingsFilter(settings, options.type));
-            }, errors.logAndThrowError);
-        }
-    },
-
-    // #### Read
-
-    // **takes:** either a json object containing a key, or a single key string
-    read: function read(options) {
-        if (_.isString(options)) {
-            options = { key: options };
-        }
-
-        if (ghost.settings()) {
-            return when(ghost.settings()[options.key]).then(function (setting) {
-                if (!setting) {
-                    return when.reject({errorCode: 404, message: 'Unable to find setting: ' + options.key});
-                }
-                var res = {};
-                res.key = options.key;
-                res.value = setting.value;
-                return res;
-            }, errors.logAndThrowError);
-        }
-    },
-
-    // #### Edit
-
-     // **takes:** either a json object representing a collection of settings, or a key and value pair
-    edit: function edit(key, value) {
-        // Check for passing a collection of settings first
-        if (_.isObject(key)) {
-            //clean data
-            var type = key.type;
-            delete key.type;
-            delete key.availableThemes;
-
-            key = settingsCollection(key);
-            return dataProvider.Settings.edit(key).then(function (result) {
-                result.models = result;
-                return when(ghost.readSettingsResult(result)).then(function (settings) {
-                    ghost.updateSettingsCache(settings);
-                    return settingsObject(settingsFilter(ghost.settings(), type));
-                });
-            }).otherwise(function (error) {
-                return dataProvider.Settings.read(key.key).then(function (result) {
-                    if (!result) {
-                        return when.reject({errorCode: 404, message: 'Unable to find setting: ' + key});
-                    }
-                    return when.reject({message: error.message});
-                });
-            });
-        }
-        return dataProvider.Settings.read(key).then(function (setting) {
-            if (!setting) {
-                return when.reject({errorCode: 404, message: 'Unable to find setting: ' + key});
-            }
-            if (!_.isString(value)) {
-                value = JSON.stringify(value);
-            }
-            setting.set('value', value);
-            return dataProvider.Settings.edit(setting).then(function (result) {
-                ghost.settings()[_.first(result).attributes.key].value = _.first(result).attributes.value;
-                return settingsObject(ghost.settings());
-            }, errors.logAndThrowError);
-        });
     }
 };
 

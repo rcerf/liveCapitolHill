@@ -1,5 +1,4 @@
-var Ghost         = require('../../ghost'),
-    dataExport    = require('../data/export'),
+var dataExport    = require('../data/export'),
     dataImport    = require('../data/import'),
     api           = require('../api'),
     fs            = require('fs-extra'),
@@ -8,7 +7,6 @@ var Ghost         = require('../../ghost'),
     nodefn        = require('when/node/function'),
     _             = require('underscore'),
 
-    ghost         = new Ghost(),
     db;
 
 db = {

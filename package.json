@@ -20,7 +20,8 @@
     "node-uuid": "~1.4.1",
     "underscore": "~1.5.2",
     "when": "~2.6.0",
-    "moment": "~2.4.0"
+    "moment": "~2.4.0",
+    "validator": "~2.0.0"
   },
   "author": "Rick Cerf",
   "license": "MIT"

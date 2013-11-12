@@ -14,9 +14,9 @@ var Legislator = liveBookshelf.Model.extend({
   tableName: 'legislators',
 
   permittedAttributes: [
-        'id', 'uuid', 'name', 'password', 'email', 'image', 'cover', 'bio', 'website', 'location',
-        'accessibility', 'status', 'language', 'meta_title', 'meta_description', 'last_login', 'created_at',
-        'created_by', 'updated_at', 'updated_by'
+    'id', 'uuid', 'name', 'password', 'email', 'image', 'cover', 'bio', 'website', 'location',
+    'accessibility', 'status', 'language', 'meta_title', 'meta_description', 'last_login', 'created_at',
+    'created_by', 'updated_at', 'updated_by'
     ],
 
   creating: function() {
@@ -26,7 +26,12 @@ var Legislator = liveBookshelf.Model.extend({
   },
 
   saving: function() {
-    this.set('name', this.name, this);
+    this.set('name', this.sanitize('name'));
+    this.set('location', this.sanitize('email'));
+    this.set('website', this.sanitize('website'));
+    this.set('bio', this.sanitize('bio'));
+
+    return liveBookshelf.Model.prototype.saving.apply(this, arguments);
   }
 
   //Relationships
