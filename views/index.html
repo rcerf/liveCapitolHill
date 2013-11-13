@@ -8,9 +8,22 @@
   <body class="container">
   {{#list results}}
   <div class = "instance">
-    <p class = "title">{{titles[0]}}</p>
-    <p class = "date">{{voted_at}}</p>
-    <p class = "question">{{total}}</p>
+    {{#titles}}
+    <p class = "title">{{title}}</p>
+    {{/titles}}
+    {{#votes}}
+    <p class = "result">{{chamber}} - {{result}} {{how}}</p>
+    {{/votes}}
+    {{#history}}
+    <p class = "date">{{active_at}}</p>
+    {{/history}}
+    {{#last_version}}
+    {{#urls}}
+    <p>
+      <a href = {{html}} class = "original">{{html}}</a>
+    </p>
+    {{/urls}}
+    {{/last_version}}
   </div>
   {{/list}}
   </body>

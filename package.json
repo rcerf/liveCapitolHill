@@ -1,5 +1,5 @@
 {
-  "name": "sfy-gallery",
+  "name": "liveCapitolHill",
   "version": "0.0.1",
   "description": "Live updates of Legislator's actions on Capitol Hill",
   "main": "index.js",
@@ -10,10 +10,15 @@
     "express": "3.2.5",
     "superagent": "0.14.6",
     "consolidate": "0.9.1",
-    "handlebars": "1.0.12",
+    "handlebars": "~1.1.2",
     "bookshelf": "~0.5.7",
     "mysql": "~2.0.0-alpha9"
   },
   "author": "Rick Cerf",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": " https://github.com/rcerf/liveCapitolHill.git"
+  }
 }
