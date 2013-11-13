@@ -3,6 +3,7 @@ var superagent = require('superagent');
 var consolidate = require('consolidate');
 var apikey = require(__dirname + "/config.js").apikey;
 var sunlight = require('./sunlight.js');
+var url = require("url");
 
 
 var app = express();
@@ -24,21 +25,21 @@ var field2 = 'bill_id.';
 var params = {};
 
 //**Routes**
-
 //Bills legislator voted on
-app.get('/bill',function(req, res){
-
+app.get('/',function(req, res){
+// http://congress.api.sunlightfoundation.com/bills?fields=chamber,titles.title,sponsor_id,history.active_at,last_version,votes&history.active=true
   params = {
-    field: field1,
-    legislator: legislator,
-    method: method,
+    field: 'chamber,titles.title,sponsor_id,history.active_at,last_version,votes',
+    filter: 'history',
+    method: 'bills',
     api_key: apikey
   };
   //Fetch elements from Sunlight API
-  sunlight.fetchLegislatorBill(params, function(data){
-    return res.render('legislator_bill', data);
+  sunlight.fetchActiveBills(params, function(data){
+    return res.render('index', data);
   });
 });
+
 
 //Legislator Bio
 app.get('/legislator',function(req, res){
@@ -49,8 +50,24 @@ app.get('/legislator',function(req, res){
     api_key: apikey
   };
   //Fetch elements from Sunlight API
-  sunlight.fetchLegislator(params, function(data){
+  sunlight.fetchLegislators(params, function(data){
     return res.render('legislator', data);
+  });
+});
+
+//Bills legislator voted on
+app.get('/legislator/votes',function(req, res){
+  console.log(req);
+
+  params = {
+    field: field1,
+    legislator: legislator,
+    method: method,
+    api_key: apikey
+  };
+  //Fetch elements from Sunlight API
+  sunlight.fetchLegislatorBills(params, function(data){
+    return res.render('legislator_bill', data);
   });
 });
 
