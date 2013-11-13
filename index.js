@@ -4,12 +4,9 @@ var consolidate = require('consolidate');
 var config = require(__dirname + "/config.js");
 var sunlight = require('./sunlight.js');
 
-if(config == undefined || config.apikey == undefined || config.apikey == ""){
-  throw Error("MUST CREATE YOUR OWN CONFIG FILE, LOOK AT CONFIG.TMP FOR AN EXAMPLE");
-}
-
 
 var app = express();
+var api_key = config.apikey;
 
 //Configure template engine
 app.engine('html', consolidate.handlebars);
@@ -25,25 +22,38 @@ var field1 = 'voter_ids.';
 var bill = 'hr384-111';
 var field2 = 'bill_id.';
 
-//"http://congress.api.sunlightfoundation.com/" + method +"?" + field1 + legislator +"__exists=true" + "&voted_at__gte=2013-07-02T4:00:00Z"
+var params = {};
 
+//**Routes**
 
-//Paste your values
-var api_key = config.apikey;
+//Bills legislator voted on
+app.get('/bill',function(req, res){
 
-app.get('/',function(req, res){
-  //Fetch elements from Sunlight API
-  var params = {
+  params = {
     field: field1,
     legislator: legislator,
     method: method,
     api_key: config.apikey
   }
+  //Fetch elements from Sunlight API
+  sunlight.fetchLegislatorBill(params, function(data){
+    return res.render('legislator_bill', data);
+  });
+});
 
+//Legislator Bio
+app.get('/legislator',function(req, res){
+
+  params = {
+    field: field1,
+    legislator: legislator,
+    method: method,
+    api_key: config.apikey
+  }
+  //Fetch elements from Sunlight API
   sunlight.fetchLegislator(params, function(data){
     return res.render('legislator_bill', data);
   });
-
-})
+});
 
 app.listen(3001);
