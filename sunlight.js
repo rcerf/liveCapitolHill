@@ -1,7 +1,7 @@
 var superagent = require('superagent');
 
 module.exports.fetchLegislatorBill = function(params, cb) {
-  superagent.get("http://congress.api.sunlightfoundation.com/" + params.method +"?" + params.field + params.legislator + "__exists=true")
+  superagent.get("http://congress.api.sunlightfoundation.com/" + params.method +"/?" + params.field + params.legislator + "__exists=true")
     .set('X-APIKey', params.api_key)
     .set({  Accept: 'application/json' })
     .end(function(e, sunlightResponse){
@@ -17,7 +17,7 @@ module.exports.fetchLegislatorBill = function(params, cb) {
 }
 
 module.exports.fetchLegislator = function(params, cb) {
-  superagent.get("http://congress.api.sunlightfoundation.com/" + params.method +"?" + params.field + params.legislator + "__exists=true")
+  superagent.get("http://congress.api.sunlightfoundation.com/legislators" + params.method + params.zip)
     .set('X-APIKey', params.api_key)
     .set({  Accept: 'application/json' })
     .end(function(e, sunlightResponse){
