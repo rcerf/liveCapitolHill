@@ -8,11 +8,14 @@
   <body class="container">
   {{#list results}}
   <div class = "instance">
-    <p class = "name">{{first_name}} {{last_name}}</p>
+    <p class = "name">{{first_name}} {{last_name}} {{party}}</p>
     <p class = "chamber">{{chamber}}</p>
     <p class = "state">{{state_name}}</p>
     <p class = "phone">{{phone}}</p>
     <a href = {{website}} class = "contact_form">Legislator's website.</a>
+    <p>
+      <a href = http://twitter.com/{{twitter_id}} class = "contact_form">@{{twitter_id}}</a>
+    </p>
   </div>
   {{/list}}
   </body>

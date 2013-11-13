@@ -33,7 +33,7 @@ app.get('/bill',function(req, res){
     legislator: legislator,
     method: method,
     api_key: apikey
-  }
+  };
   //Fetch elements from Sunlight API
   sunlight.fetchLegislatorBill(params, function(data){
     return res.render('legislator_bill', data);
@@ -47,7 +47,7 @@ app.get('/legislator',function(req, res){
     method: '/locate?zip=',
     zip: '94118',
     api_key: apikey
-  }
+  };
   //Fetch elements from Sunlight API
   sunlight.fetchLegislator(params, function(data){
     return res.render('legislator', data);

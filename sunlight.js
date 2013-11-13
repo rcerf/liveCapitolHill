@@ -17,7 +17,7 @@ module.exports.fetchLegislatorBill = function(params, cb) {
 }
 
 module.exports.fetchLegislator = function(params, cb) {
-  superagent.get("http://congress.api.sunlightfoundation.com/legislators" + params.method + params.zip)
+  superagent.get("http://congress.api.sunlightfoundation.com/legislators" + params.method + params.zip +"&per_page=all")
     .set('X-APIKey', params.api_key)
     .set({  Accept: 'application/json' })
     .end(function(e, sunlightResponse){
