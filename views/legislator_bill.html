@@ -1,0 +1,18 @@
+<!DOCTYPE html lang="en">
+<html>
+  <head>
+    <link type="text/css" href="css/flatly-bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="css/bootstrap-responsive.min.css" rel="stylesheet"/>
+  </head>
+
+  <body class="container">
+  {{#list results}}
+  <div class = "instance">
+    <p class = "question">{{question}}</p>
+    <p class = "date">{{voted_at}}</p>
+    <p class = "question">{{total}}</p>
+  </div>
+  {{/list}}
+  </body>
+
+</html>

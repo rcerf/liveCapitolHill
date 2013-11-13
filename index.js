@@ -2,6 +2,7 @@ var express = require('express');
 var superagent = require('superagent');
 var consolidate = require('consolidate');
 var config = require(__dirname + "/config.js");
+var sunlight = require('./sunlight.js');
 
 if(config == undefined || config.apikey == undefined || config.apikey == ""){
   throw Error("MUST CREATE YOUR OWN CONFIG FILE, LOOK AT CONFIG.TMP FOR AN EXAMPLE");
@@ -32,20 +33,16 @@ var api_key = config.apikey;
 
 app.get('/',function(req, res){
   //Fetch elements from Sunlight API
-  superagent.get("http://congress.api.sunlightfoundation.com/" + 
-    method +"?" + field1 + legislator +"__exists=true" + "&fields=breakdown.total")
-    .set('X-APIKey', api_key)
-    .set({  Accept: 'application/json' })
-    .end(function(e, sunlightResponse){
-      console.log(sunlightResponse.headers);
-      if (e){
-        console.log('e');
-        next(e);
-      } 
-      //Render template with story object in response body
-      console.log(sunlightResponse.body);
-      return res.render('index', sunlightResponse.body);      
-    })
+  var params = {
+    field: field1,
+    legislator: legislator,
+    method: method,
+    api_key: config.apikey
+  }
+
+  sunlight.fetchLegislator(params, function(data){
+    return res.render('legislator_bill', data);
+  });
 
 })
 
