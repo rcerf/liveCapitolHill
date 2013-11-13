@@ -1,4 +1,4 @@
-var liveBookshelf = require('.?/base');
+var liveBookshelf = require('./base');
 
 //Create Nomination model
 var Nomination = liveBookshelf.Model.extend({

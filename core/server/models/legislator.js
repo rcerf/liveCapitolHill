@@ -14,7 +14,7 @@ var Legislator = liveBookshelf.Model.extend({
   tableName: 'legislators',
 
   permittedAttributes: [
-    'id', 'uuid', 'name', 'password', 'email', 'image', 'cover', 'bio', 'website', 'location',
+    'id', 'uuid', 'name', 'password', 'image', 'cover', 'bio', 'website', 'location',
     'accessibility', 'status', 'language', 'meta_title', 'meta_description', 'last_login', 'created_at',
     'created_by', 'updated_at', 'updated_by'
     ],
@@ -41,6 +41,21 @@ var Legislator = liveBookshelf.Model.extend({
   nomination: function() {
     return this.belongsToMany(Nomination).through(Vote);
   }
+}, {
+  /**
+     * Naive legislator add
+     * @param  _legislator
+     *
+     * Hashes the password provided before saving to the database.
+     */
+  add: function(_legislator) {
+    var self = this;
+    var legislatorData = _.extend({}, _legislator);
+    
+    //creates a new model...where is it saved?
+    //***maybe on the base model add.
+    return self.forge();
+
 });
 
  //Create Legislator collection

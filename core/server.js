@@ -42,7 +42,7 @@ var api_key = config.apikey;
 server.get('/',function(req, res){
   superagent.get("http://congress.api.sunlightfoundation.com/votes?bill_id=" + bill +"&fields=voter_ids,voted_at")
     .set('X-APIKey', api_key)
-    .set({  Accept: 'serverlication/json' })
+    .set({  Accept: 'serverlocation/json' })
     .end(function(e, sunlightResponse){
       console.log(sunlightResponse.headers);
       if (e){

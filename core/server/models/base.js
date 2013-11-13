@@ -4,6 +4,7 @@ var config    = require('../../../config.js');
 var moment    = require('moment');
 var when      = require('when');
 var _         = require('underscore');
+var sanitize  = require('validator').sanitize;
 
 //might need to require index.js and mysql? 
 
@@ -12,7 +13,7 @@ var _         = require('underscore');
 var liveBookshelf = Bookshelf.live = Bookshelf.initialize(config[process.env.NODE_ENV || 'development'].database);
 var liveBookshelf.client = config[process.env.NODE_ENV].database.client;
 
-console.log(liveBookshelf);
+liveBookshelf.validator = new Validator();
 
 liveBookshelf.Model = liveBookshelf.Model.extend({
 
@@ -20,20 +21,16 @@ liveBookshelf.Model = liveBookshelf.Model.extend({
 
   defaults: function() {
     return {
-      uuid: uuid.v4()
+      uuid: uuid.v4() //asigns a GUID to each row over every table
     };
   }
 
   intialize: function() {
-    this.on('creating', this.creating, this);
     this.on('saving', this.saving, this);
   },
 
-
- //no creating b/c I don't need a created by attribute
-
   saving: function() {
-    //might not need this attributes picker
+    // Remove any properties which don't belong on the post model
     this.attributes = this.pick(this.permittedAttributes);
     this.set('updated_by', 1);
   },
