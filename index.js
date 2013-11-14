@@ -40,6 +40,20 @@ app.get('/',function(req, res){
   });
 });
 
+app.get('/activeBills',function(req, res){
+// http://congress.api.sunlightfoundation.com/bills?fields=chamber,titles.title,sponsor_id,history.active_at,last_version,votes&history.active=true
+  params = {
+    field: 'chamber,titles.title,sponsor_id,history.active_at,last_version,votes',
+    filter: 'history',
+    method: 'bills',
+    api_key: apikey
+  };
+  //Fetch elements from Sunlight API
+  sunlight.fetchActiveBills(params, function(data){
+    return res.render('activeBills', data);
+  });
+});
+
 
 //Legislator Bio
 app.get('/legislator',function(req, res){
