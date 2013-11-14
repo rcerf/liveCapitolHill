@@ -9,3 +9,33 @@ body {
   font-weight: bold;
   font-size: 1em;
  }
+
+.activeBills {
+  height: 50em;
+  overflow: scroll;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #fff;
+  border-width: 1px;
+  border-color: #ddd;
+  border-radius: 4px 4px 0 0;
+  box-shadow: none;
+  }
+
+.form-control {
+  display: inline-block;
+  vertical-align: right;
+  text-align: center;
+  width: 15em;
+  margin:15px;
+  padding:5px;
+
+}
+
+.title {
+  margin-top: 1em;
+}
+
+button {
+  position: block;
+}

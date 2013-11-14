@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="http://getbootstrap.com/docs-assets/ico/favicon.png">
+    <link rel="shortcut icon" href="">
 
     <title>Live Capitol Hill</title>
 
@@ -45,10 +45,14 @@
 
     <div class="container">
 
-      <div class="starter-template">
+      <div class="starter-template title">
         <h1>Live Capitol Hill</h1>
       </div>
-      <div>
+      <form class="margin-base-vertical">
+        <input type="text" class="form-control" placeholder="Enter your Zipcode">
+        <button type="button" class="btn btn-primary">Enter</button>
+      </form>
+      <div class = "activeBills">
         {{#results}}
           <div class = "instance">
             {{#titles}}
