@@ -10,7 +10,7 @@ body {
   font-size: 1em;
  }
 
-.resultscontainer {
+.results {
   height: 50em;
   overflow: scroll;
   margin-left: 0;
