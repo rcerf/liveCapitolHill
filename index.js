@@ -4,6 +4,7 @@ var consolidate = require('consolidate');
 var apikey = require(__dirname + "/config.js").apikey;
 var sunlight = require('./sunlight.js');
 var url = require("url");
+var _ = require("underscore");
 
 
 var app = express();
@@ -56,15 +57,16 @@ app.get('/activeBills',function(req, res){
 
 
 //Legislator Bio
-app.get('/legislator',function(req, res){
+app.get('/legislator/:zip',function(req, res){
 
   params = {
     method: '/locate?zip=',
-    zip: '94118',
+    zip: req.params.zip,
     api_key: apikey
   };
   //Fetch elements from Sunlight API
   sunlight.fetchLegislators(params, function(data){
+    data = _.extend(data, params);
     return res.render('legislator', data);
   });
 });

@@ -52,28 +52,33 @@
         <input type="text" class="form-control" placeholder="Enter your Zipcode">
         <button type="button" class="btn btn-primary">Enter</button>
       </form>
-      <div class = "activeBills">
-        {{#results}}
-          <div class = "instance">
-            {{#titles}}
-            <p class = "title">{{title}}</p>
-            {{/titles}}
-            {{#votes}}
-            <p class = "result">{{chamber}} - {{result}} {{how}}</p>
-            {{/votes}}
-            {{#history}}
-            <p class = "date">{{active_at}}</p>
-            {{/history}}
-            {{#last_version}}
-            {{#urls}}
-            <p>
-              <a href = {{html}} class = "original">{{html}}</a>
-              <br><br>
-            </p>
-            {{/urls}}
-            {{/last_version}}
-          </div>
-          {{/results}}
+      <div class = "results">
+        <div class="starter-template title">
+          <h3>Active Federal Bills</h3>
+        </div>
+        <div class = "activeBills">
+          {{#results}}
+            <div class = "instance">
+              {{#titles}}
+              <p class = "title">{{title}}</p>
+              {{/titles}}
+              {{#votes}}
+              <p class = "result">{{chamber}} - {{result}} {{how}}</p>
+              {{/votes}}
+              {{#history}}
+              <p class = "date">{{active_at}}</p>
+              {{/history}}
+              {{#last_version}}
+              {{#urls}}
+              <p>
+                <a href = {{html}} class = "original">{{html}}</a>
+                <br><br>
+              </p>
+              {{/urls}}
+              {{/last_version}}
+            </div>
+            {{/results}}
+        </div>
       </div>
 
     </div><!-- /.container -->
@@ -84,45 +89,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
   
 
 </body></html>
-
-
-
-<!-- <!DOCTYPE html lang="en">
-<html>
-  <head>
-    <link type="text/css" href="css/flatly-bootstrap.min.css" rel="stylesheet" />
-    <link type="text/css" href="css/bootstrap-responsive.min.css" rel="stylesheet"/>
-  </head>
-
-  <body class="container">
-    <form>
-      <input class="search" type="text" />
-      <input class="submit" type="submit" />          
-    </form>
-    <h3>Recent Active Bills</h3>
-  {{#results}}
-  <div class = "instance">
-    {{#titles}}
-    <p class = "title">{{title}}</p>
-    {{/titles}}
-    {{#votes}}
-    <p class = "result">{{chamber}} - {{result}} {{how}}</p>
-    {{/votes}}
-    {{#history}}
-    <p class = "date">{{active_at}}</p>
-    {{/history}}
-    {{#last_version}}
-    {{#urls}}
-    <p>
-      <a href = {{html}} class = "original">{{html}}</a>
-    </p>
-    {{/urls}}
-    {{/last_version}}
-  </div>
-  {{/results}}
-  </body>
-
-</html> -->

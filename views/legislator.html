@@ -1,11 +1,7 @@
-<!DOCTYPE html lang="en">
-<html>
-  <head>
-    <link type="text/css" href="css/flatly-bootstrap.min.css" rel="stylesheet" />
-    <link type="text/css" href="css/bootstrap-responsive.min.css" rel="stylesheet"/>
-  </head>
-
-  <body class="container">
+  <div class="container">
+    <div class="starter-template title">
+          <h3>Legislators in {{zip}}</h3>
+    </div>
   {{#results}}
   <div class = "instance">
     <p class = "name">{{first_name}} {{last_name}} {{party}}</p>
@@ -18,6 +14,4 @@
     </p>
   </div>
   {{/results}}
-  </body>
-
-</html>
+  </div>
