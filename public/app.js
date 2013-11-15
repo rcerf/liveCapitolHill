@@ -12,7 +12,7 @@ $(function(){ // on ready
     e.preventDefault();
     // window.username = $('option:selected');
       var entry = $('.form-control').val();
-      var url = window.location.origin +'/legislator/' + entry;
+      var url = window.location.origin +'/' + entry;
       console.log(entry);
       displayResults(url);
   };

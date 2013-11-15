@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="live updates from Capitol Hill">
     <link rel="shortcut icon" href="">
 
     <title>Live Capitol Hill</title>
@@ -59,23 +58,18 @@
         <div class = "activeBills">
           {{#results}}
             <div class = "instance">
+              <blockquote>
               {{#titles}}
-              <p class = "title">{{title}}</p>
+              <p class="lead">{{title}}</p>
               {{/titles}}
+              
               {{#votes}}
-              <p class = "result">{{chamber}} - {{result}} {{how}}</p>
+                <p><span class="{{result}}">{{result}}</span> {{how}}</p>
+                <cite title="Source Title" class="chamber">{{chamber}}  </cite>
               {{/votes}}
-              {{#history}}
-              <p class = "date">{{active_at}}</p>
-              {{/history}}
-              {{#last_version}}
-              {{#urls}}
-              <p>
-                <a href = {{html}} class = "original">{{html}}</a>
-                <br><br>
-              </p>
-              {{/urls}}
-              {{/last_version}}
+              
+              <a href = {{#last_version}}{{#urls}}{{html}}{{/urls}}{{/last_version}} class = "text-right">{{#history}}{{active_at}}{{/history}}</a>
+              </blockquote>
             </div>
             {{/results}}
         </div>

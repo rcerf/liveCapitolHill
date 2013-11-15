@@ -57,7 +57,7 @@ app.get('/activeBills',function(req, res){
 
 
 //Legislator Bio
-app.get('/legislator/:zip',function(req, res){
+app.get('/:zip',function(req, res){
 
   params = {
     method: '/locate?zip=',

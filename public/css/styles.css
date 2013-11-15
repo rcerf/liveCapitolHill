@@ -39,3 +39,11 @@ body {
 button {
   position: block;
 }
+
+.pass {
+  color: green;
+}
+
+.chamber {
+  position: block;
+}

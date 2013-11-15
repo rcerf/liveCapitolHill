@@ -6,13 +6,12 @@ module.exports.fetchActiveBills = function(params, cb) {
     .set('X-APIKey', params.api_key)
     .set({  Accept: 'application/json' })
     .end(function(e, sunlightResponse){
-      // console.log(sunlightResponse.headers);
+      console.log(sunlightResponse.headers);
       if (e){
         console.log('e');
         next(e);
       } 
-      //Render template with story object in response body
-      console.log(sunlightResponse.body.results[0].titles[0].title);
+      console.log(sunlightResponse.body);
       cb(sunlightResponse.body);      
     });
 }
