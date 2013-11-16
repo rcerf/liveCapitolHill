@@ -20,6 +20,11 @@ body {
   border-color: #ddd;
   border-radius: 4px 4px 0 0;
   box-shadow: none;
+  border: 2px solid #eee;
+  }
+
+  .search-container {
+    padding-bottom: 40px;
   }
 
 .form-control {
@@ -27,13 +32,20 @@ body {
   vertical-align: right;
   text-align: center;
   width: 15em;
-  margin:15px;
-  padding:5px;
+  margin-left: 37%;
 
 }
 
+.result-how {
+  display: inline-block;
+}
+
+.btn {
+  display: relative;
+}
+
 .title {
-  margin-top: 1em;
+  padding-top: 20px;
 }
 
 button {
@@ -41,9 +53,9 @@ button {
 }
 
 .pass {
-  color: green;
+  color: rgb(70, 114, 70);
 }
 
-.chamber {
-  position: block;
+blockquote {
+  margin-left: 15px;
 }

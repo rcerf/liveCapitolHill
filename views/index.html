@@ -33,11 +33,7 @@
           <a class="navbar-brand" href="">Live Capitol Hill</a>
         </div>
         <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="http://getbootstrap.com/examples/starter-template/#">Home</a></li>
-            <li><a href="http://getbootstrap.com/examples/starter-template/#about">About</a></li>
-            <li><a href="http://getbootstrap.com/examples/starter-template/#contact">Contact</a></li>
-          </ul>
+
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -47,10 +43,10 @@
       <div class="starter-template title">
         <h1>Live Capitol Hill</h1>
       </div>
-      <form class="margin-base-vertical">
+      <div class="container search-container">
         <input type="text" class="form-control" placeholder="Enter your Zipcode">
         <button type="button" class="btn btn-primary">Enter</button>
-      </form>
+      </div>
       <div class = "results">
         <div class="starter-template title">
           <h3>Active Federal Bills</h3>
@@ -58,18 +54,22 @@
         <div class = "activeBills">
           {{#results}}
             <div class = "instance">
-              <blockquote>
-              {{#titles}}
-              <p class="lead">{{title}}</p>
-              {{/titles}}
-              
-              {{#votes}}
-                <p><span class="{{result}}">{{result}}</span> {{how}}</p>
-                <cite title="Source Title" class="chamber">{{chamber}}  </cite>
-              {{/votes}}
-              
-              <a href = {{#last_version}}{{#urls}}{{html}}{{/urls}}{{/last_version}} class = "text-right">{{#history}}{{active_at}}{{/history}}</a>
-              </blockquote>
+              <blockquote class="bill">
+                {{#titles}}
+                <p class="lead">{{title}}</p>
+                {{/titles}}
+
+                {{#votes}}
+                  <p class="chamber">{{chamber}}</p>
+                  <p class="result-how"><strong><span class="{{result}}">{{result}}</span></strong> {{how}}</p>
+                {{/votes}}
+                {{#last_version}} 
+                {{#urls}}
+                <p> {{html}}  </p>
+                {{/urls}}
+                {{/last_version}}
+                  <a href = {{#last_version}} {{#urls}} "{{html}}" {{/urls}} {{/last_version}} class = "text-right">{{#history}}{{active_at}}{{/history}}</a>
+              </blockquote> 
             </div>
             {{/results}}
         </div>

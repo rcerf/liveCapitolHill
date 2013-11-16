@@ -1,5 +1,13 @@
 $(function(){ // on ready
 
+  $(document).bind('DOMNodeInserted', function(event) {
+    $('.').on('click', function () {
+      bioguide = $(this).data('bioguide');
+    }
+
+      );
+  }); 
+
   var displayResults = function(url){
     $.get( url, function( data ) {
       $(".results").empty();
@@ -17,5 +25,5 @@ $(function(){ // on ready
       displayResults(url);
   };
 
-  $('.btn').on('click', postZip);
+  $('.btn-primary').on('click', postZip);
 });
