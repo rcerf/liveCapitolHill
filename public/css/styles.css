@@ -11,7 +11,7 @@ body {
  }
 
 .results {
-  height: 50em;
+  height: 45em;
   overflow: scroll;
   margin-left: 0;
   margin-right: 0;
@@ -23,16 +23,13 @@ body {
   border: 2px solid #eee;
   }
 
-  .search-container {
-    padding-bottom: 40px;
-  }
+.search-container {
+  padding-bottom: 40px;
+}
 
 .form-control {
   display: inline-block;
-  vertical-align: right;
-  text-align: center;
   width: 15em;
-  margin-left: 37%;
 
 }
 
@@ -45,7 +42,7 @@ body {
 }
 
 .title {
-  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 button {
@@ -58,4 +55,26 @@ button {
 
 blockquote {
   margin-left: 15px;
+}
+
+.date {
+  text-align: right;
+}
+
+.party {
+  color: grey;
+font-size: 16px;
+}
+
+.state_chamber {
+  margin-bottom: 10px;
+}
+
+.legislator-name {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.row-small {
+  margin-bottom: 3px;
 }

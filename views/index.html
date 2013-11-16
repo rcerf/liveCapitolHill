@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="live updates from Capitol Hill">
-    <link rel="shortcut icon" href="">
+
 
     <title>Live Capitol Hill</title>
 
@@ -43,36 +43,54 @@
       <div class="starter-template title">
         <h1>Live Capitol Hill</h1>
       </div>
-      <div class="container search-container">
-        <input type="text" class="form-control" placeholder="Enter your Zipcode">
-        <button type="button" class="btn btn-primary">Enter</button>
+      <div class="row search">
+        <p class="text-center">
+          <input type="text" class="form-control" placeholder="Enter your Zipcode">
+          <button type="button" class="btn btn-primary">Enter</button>
+        </p>
       </div>
       <div class = "results">
         <div class="starter-template title">
           <h3>Active Federal Bills</h3>
         </div>
-        <div class = "activeBills">
+
           {{#results}}
             <div class = "instance">
               <blockquote class="bill">
+                <div class="row title">
                 {{#titles}}
-                <p class="lead">{{title}}</p>
+                  <p class="lead">{{title}}</p>
                 {{/titles}}
+                </div>
 
-                {{#votes}}
-                  <p class="chamber">{{chamber}}</p>
-                  <p class="result-how"><strong><span class="{{result}}">{{result}}</span></strong> {{how}}</p>
-                {{/votes}}
-                {{#last_version}} 
-                {{#urls}}
-                <p> {{html}}  </p>
-                {{/urls}}
-                {{/last_version}}
-                  <a href = {{#last_version}} {{#urls}} "{{html}}" {{/urls}} {{/last_version}} class = "text-right">{{#history}}{{active_at}}{{/history}}</a>
+                <div class = "row">
+                    <div class="col-xs-6 col-md-4 chamber">
+                      <p class="text-left chamber">{{#votes}}{{chamber}}{{/votes}}</p>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                      <p class = "text-center">
+                        <span class="text-center {{result}}"><strong>{{#votes}}{{result}}</strong></span> {{how}}{{/votes}}
+                      </p>
+                    </div>
+
+                  {{#if last_version.urls.html}}
+                  <div class="col-xs-6 col-md-4">
+                      <p class="text-right">
+                        <button class="btn btn-link text-right" href={{last_version.urls.html}}>{{history.active_at}}</button>
+                      </p>
+                  </div>
+                  {{/if}}
+                  {{#unless last_version.urls.html}}
+                  <div class= "date col-xs-6 col-md-4">
+                    <p class="text-right">{{history.active_at}}</p>
+                  </div>
+                  {{/unless}}
+                </div>
+
               </blockquote> 
             </div>
             {{/results}}
-        </div>
+
       </div>
 
     </div><!-- /.container -->

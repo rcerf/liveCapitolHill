@@ -1,11 +1,32 @@
     <div class="starter-template title">
-          <h3>Legislators in {{zip}}</h3>
+      <h3>Legislators in {{zip}}</h3>
     </div>
+
   {{#results}}
-  <blockquote class = "instance">
-    <h3 class = "name" data-bioguide = {{bioguide_id}}>{{first_name}} {{last_name}} {{party}}</h3>
-    <p class = "state_chamber lead">{{state_name}}  |  {{chamber}}</p>
-    <p class = "small term"> {{term_start}} - {{term_end}}</p>
-    <p class = "small contact">{{phone}}  |   <a href = {{website}} class = "contact_form">Legislator's website.</a>  |   <a href = http://twitter.com/{{twitter_id}} class = "contact_form">@{{twitter_id}}</a></p>
+  <blockquote class = "text-left instance">
+    <div class = "row">
+      <h3 class = "legislator-name" data-bioguide = {{bioguide_id}}>{{first_name}} {{last_name}} <span class="party">{{party}}</span></h3>
+    </div>
+
+    <div class="row">
+      <p class = "state_chamber lead">{{state_name}}  |  {{chamber}}</p>
+    </div>
+
+    <div class="row row-small">
+      <p class = "small term"> {{term_start}} - {{term_end}}</p>
+    </div>
+    <div class="row row-small">
+      <p class = "small contact">{{phone}}</p>
+    </div>
+    <div class="row row-small">
+      <p class="small">
+        <a href = {{website}} class = "contact_form">Legislator's website.</a>
+      </p>
+    </div>
+    <div class="row row-small">
+       <p class="small">
+        <a href = http://twitter.com/{{twitter_id}} class = "contact_form">@{{twitter_id}}</a>
+      </p>
+    </div>
   </blockquote>
   {{/results}}

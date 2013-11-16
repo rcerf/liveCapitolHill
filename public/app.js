@@ -1,8 +1,9 @@
 $(function(){ // on ready
 
   $(document).bind('DOMNodeInserted', function(event) {
-    $('.').on('click', function () {
-      bioguide = $(this).data('bioguide');
+    $('.legislator').on('click', function (e) {
+      e.preventDefault();
+      var bioguide = $(this).data('bioguide');
     }
 
       );
