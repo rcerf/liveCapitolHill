@@ -30,24 +30,32 @@ padding-top: 5em;
   width: 13em;
 }
 
-blockquote {
-  margin-left: 1em;
-}
-
 .contentTitle {
   text-align: center;
   padding-top: 1.25em;
   padding-bottom: 1.25em;
 }
 
+.bill {
+  margin-left: 1em;
+  margin-right: 1em;
+
+}
+
 .billTitle {
   text-align: left;
   padding-top: 1.25em;
+  padding-left: 1em;
   padding-bottom: 1.25em;
+  padding-right: 1em;
 }
 
 .pass {
   color: #4DB870;
+}
+
+.modal-title{
+  text-align: center;
 }
 
 .timeStamp {
@@ -56,11 +64,17 @@ blockquote {
 
 .party {
   color: #5C5C5C;
-  font-size: 1em;
+  font-size: .70em;
 }
 
 .state_chamber {
   margin-bottom: 0.625em;
+}
+
+.legislatorBlock {
+  margin-right: 5em;
+  margin-left: 5em;
+  border-right: 5px solid #eee;
 }
 
 .legislator-name {

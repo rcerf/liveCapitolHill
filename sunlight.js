@@ -1,12 +1,10 @@
 var superagent = require('superagent');
 
 module.exports.fetchActiveBills = function(params, cb) {
-  // http://congress.api.sunlightfoundation.com/bills?fields=chamber,titles.title,sponsor_id,history.active_at,last_version,votes&history.active=true
   superagent.get("http://congress.api.sunlightfoundation.com/bills?fields=chamber,titles.title,sponsor_id,history.active_at,last_version,votes&history.active=true")
     .set('X-APIKey', params.api_key)
     .set({  Accept: 'application/json' })
     .end(function(e, sunlightResponse){
-      console.log(sunlightResponse.headers);
       if (e){
         console.log('e');
         next(e);
@@ -26,8 +24,6 @@ module.exports.fetchLegislatorBills = function(params, cb) {
         console.log('e');
         next(e);
       } 
-      //Render template with story object in response body
-      // console.log(sunlightResponse.body);
       cb(sunlightResponse.body);      
     });
 }
@@ -42,8 +38,6 @@ module.exports.fetchLegislators = function(params, cb) {
         console.log('e');
         next(e);
       } 
-      //Render template with story object in response body
-      // console.log(sunlightResponse.body);
       cb(sunlightResponse.body);      
     });
 }
