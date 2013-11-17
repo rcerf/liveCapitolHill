@@ -17,12 +17,6 @@ app.set('views', __dirname + '/views');
 //Set up static folder
 app.use(express.static(__dirname + '/public'));
 
-var legislator = 'A000014';
-var method = 'votes';
-var field1 = 'voter_ids.';
-var bill = 'hr384-111';
-var field2 = 'bill_id.';
-
 var params = {};
 
 //**Routes**
@@ -41,19 +35,19 @@ app.get('/',function(req, res){
   });
 });
 
-app.get('/activeBills',function(req, res){
-// http://congress.api.sunlightfoundation.com/bills?fields=chamber,titles.title,sponsor_id,history.active_at,last_version,votes&history.active=true
-  params = {
-    field: 'chamber,titles.title,sponsor_id,history.active_at,last_version,votes',
-    filter: 'history',
-    method: 'bills',
-    api_key: apikey
-  };
-  //Fetch elements from Sunlight API
-  sunlight.fetchActiveBills(params, function(data){
-    return res.render('activeBills', data);
-  });
-});
+// app.get('/activeBills',function(req, res){
+// // http://congress.api.sunlightfoundation.com/bills?fields=chamber,titles.title,sponsor_id,history.active_at,last_version,votes&history.active=true
+//   params = {
+//     field: 'chamber,titles.title,sponsor_id,history.active_at,last_version,votes',
+//     filter: 'history',
+//     method: 'bills',
+//     api_key: apikey
+//   };
+//   //Fetch elements from Sunlight API
+//   sunlight.fetchActiveBills(params, function(data){
+//     return res.render('activeBills', data);
+//   });
+// });
 
 
 //Legislator Bio
@@ -72,8 +66,8 @@ app.get('/:zip',function(req, res){
 });
 
 //Bills legislator voted on
-app.get('/legislator/votes',function(req, res){
-  console.log(req);
+app.get('/legislator/:bioguide',function(req, res){
+  console.log(req.params);
 
   params = {
     field: field1,

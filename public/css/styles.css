@@ -9,7 +9,7 @@ padding-top: 5em;
 }
 
 .results {
-  height: 45em;
+  height: 47em;
   overflow: scroll;
   margin-left: 0;
   margin-right: 0;
@@ -84,4 +84,8 @@ padding-top: 5em;
 
 .row-small {
   margin-bottom: 0.188em;
+}
+
+.credit {
+  margin: 3em;
 }
