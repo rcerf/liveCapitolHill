@@ -38,6 +38,3 @@ node_modules
 
 ### PhPStorm ###
 .idea/
-
-### Config ###
-config.js
