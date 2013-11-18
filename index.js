@@ -24,7 +24,6 @@ var params = {};
 app.get('/',function(req, res){
 // http://congress.api.sunlightfoundation.com/bills?fields=chamber,titles.title,sponsor_id,history.active_at,last_version,votes&history.active=true
   params = {
-    field: 'chamber,titles.title,sponsor_id,history.active_at,last_version,votes',
     filter: 'history',
     method: 'bills',
     api_key: apikey

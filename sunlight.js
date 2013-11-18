@@ -1,7 +1,8 @@
 var superagent = require('superagent');
 
 module.exports.fetchActiveBills = function(params, cb) {
-  superagent.get("http://congress.api.sunlightfoundation.com/bills?history.active=true&order=last_action_at&fields=chamber,official_title,sponsor_id,history.active_at,last_version,votes")
+  superagent.get("http://congress.api.sunlightfoundation.com/bills?history.active=true&order=last_action_at&per_page=50"
+    + "&fields=chamber,official_title,sponsor_id,history.active_at,last_version,votes")
     .set('X-APIKey', params.api_key)
     .set({  Accept: 'application/json' })
     .end(function(e, sunlightResponse){
