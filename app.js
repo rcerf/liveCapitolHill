@@ -6,6 +6,8 @@ var sunlight = require('./sunlight.js');
 var url = require("url");
 var _ = require("underscore");
 
+var port = process.env.PORT || 3001;
+
 
 var app = express();
 
@@ -80,4 +82,4 @@ app.get('/legislator/:bioguide',function(req, res){
   });
 });
 
-app.listen(3001);
+app.listen(port);
