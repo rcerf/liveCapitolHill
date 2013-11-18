@@ -1,16 +1,12 @@
 $(function(){ // on ready
 
-
+  //resizes results dynamically w/ screen size
   $('.results').css({'height': (($(window).height()*.76))+'px'});
   $(window).resize(function(){
       $('.results').css({'height': (($(window).height()*.76))+'px'});
   });
 
-  $('.heading').css({'height': (($(window).height()*.08))+'px'});
-  $(window).resize(function(){
-      $('.heading').css({'height': (($(window).height()*.08))+'px'});
-  });
-
+  //resizes footer dynamically with screen size
   $('.footer-container').css({'height': (($(window).height()*.005))+'px'});
   $(window).resize(function(){
       $('.footer-container').css({'height': (($(window).height()*.005))+'px'});
