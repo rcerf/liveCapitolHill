@@ -63,17 +63,18 @@
               <blockquote class="bill">
 
                 <div class="row billTitle">
-                  <p class="lead" data-billID="{{bill_id}}">{{#titles}}{{title}}{{/titles}}</p>
+                  <p class="lead" data-billID="{{bill_id}}">{{official_title}}<br></p>
                 </div>
-
+                {{#votes}}
                 <div class = "row">
                     <div class="col-xs-4">
-                      <p class="text-left chamber">{{#votes}}{{chamber}}{{/votes}}</p>
+                      <p class="text-left chamber">{{chamber}}</p>
                     </div>
 
                     <div class="col-xs-4">
                       <p class = "text-center">
-                        <span class="text-center {{#votes}}{{result}}{{/votes}}"><strong>{{#votes}}{{result}}</strong></span> {{how}}{{/votes}}
+                        <span class="text-center {{result}}"><strong>{{result}}</strong></span> {{how}}<br><span class="text">{{text}}</span><br>
+                        
                       </p>
                     </div>
                   {{#if last_version.urls.html}}
@@ -84,18 +85,19 @@
                   </div>
                   {{else}}
                   <div class= "date col-xs-4">
-                    <p class="text-right">{{history.active_at}}</p>
+                    <p class="text-right">{{acted_at}}</p>
                   </div>
                   {{/if}}
                 </div>
-
+                {{/votes}}
               </blockquote> 
             {{/results}}
 
       </div>
 
     </div><!-- /.container -->
-<!--     <div id="footer">
+
+ <!--   <div id="footer">
       <div class="container footer-container">
         <p class="text-muted credit">Data courtesy of<a href="http://sunlightfoundation.com/"> The Sunlight Foundation</a>.  Live Capitol Hill was created by <a href="https://github.com/rcerf">Rick Cerf</a>.</p>
       </div>

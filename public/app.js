@@ -1,5 +1,12 @@
 $(function(){ // on ready
 
+
+  $('.results').css({'height': (($(window).height()*.75))+'px'});
+  $(window).resize(function(){
+      $('.results').css({'height': (($(window).height()*.75))+'px'});
+  });
+
+
   // $(document).bind('DOMNodeInserted', function(event) {
   //   $('.legislator').on('click', function (e) {
   //     e.preventDefault();
@@ -30,6 +37,10 @@ $(function(){ // on ready
           remote: url
       });
   };
+
+  $('body').on('hidden.bs.modal', '.modal', function () {
+    $(this).removeData('bs.modal');
+  });
 
   $('.btn-primary').on('click', postZip);
 });
