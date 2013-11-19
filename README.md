@@ -11,4 +11,4 @@ Node.js,
 Express,
 Handlebars templating
 
-This is my first personal project at Hack Reactor. You can find a live deployment at http://livecapitol.azurewebsites.net/.
+You can find a live deployment at http://livecapitol.azurewebsites.net/.
