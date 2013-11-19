@@ -3,9 +3,7 @@ $(function(){ // on ready
   var $results = $('.results');
   var $footer = $('.footer-container');
   var $button = $('.btn-primary');
-
-
-
+  var $form = $('.form-control');
 
   // $(document).bind('DOMNodeInserted', function(event) {
   //   $('.legislator').on('click', function (e) {
@@ -24,8 +22,6 @@ $(function(){ // on ready
   // };
 
 
-  
-
   var postZip = function(e){
     e.preventDefault();
     // window.username = $('option:selected');
@@ -38,14 +34,20 @@ $(function(){ // on ready
       });
   };
   
+  //initiated zip lookup on button click
+  $button.on('click', postZip);
+
+  //initiate zip lookup on enter
+  $form.on('keyup', function(e){
+    if(e.which === 13){
+      postZip(e);
+    }
+  });
+ 
   //removes data on modal upon close so new zip code can be entered
   $('body').on('hidden.bs.modal', '.modal', function () {
     $(this).removeData('bs.modal');
   });
-  
-  //initiated Zip lookup on button click
-  $button.on('click', postZip);
-
 
   //resizes results dynamically w/ screen size
   $results.css({'height': (($(window).height()*.74))+'px'});
