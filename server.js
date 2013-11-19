@@ -7,9 +7,8 @@ var url = require("url");
 var _ = require("underscore");
 var helpers = require('handlebars-helpers');
 var Handlebars = require('handlebars');
-
+var params;
 var port = process.env.PORT || 3001;
-
 
 var app = express();
 
@@ -21,11 +20,9 @@ app.set('views', __dirname + '/views');
 //Set up static folder
 app.use(express.static(__dirname + '/public'));
 
-var params = {};
 //**Routes**
 //Bills legislator voted on
 app.get('/',function(req, res){
-// http://congress.api.sunlightfoundation.com/bills?fields=chamber,titles.title,sponsor_id,history.active_at,last_version,votes&history.active=true
   params = {
     filter: 'history',
     method: 'bills',
@@ -36,7 +33,6 @@ app.get('/',function(req, res){
     res.render('index', data);
   });
 });
-
 
 //Legislator Bio
 app.get('/:zip',function(req, res){
@@ -55,8 +51,7 @@ app.get('/:zip',function(req, res){
 
 //Bills legislator voted on
 app.get('/legislator/:bioguide',function(req, res){
-  console.log(req.params);
-
+  
   params = {
     bioguide: req.params.bioguide,
     api_key: apikey

@@ -8,9 +8,7 @@ module.exports.fetchActiveBills = function(params, cb) {
     .end(function(e, sunlightResponse){
       if (e){
         console.log('e');
-        next(e);
-      } 
-      console.log(sunlightResponse.body);
+      };
       cb(sunlightResponse.body);      
     });
 }
@@ -24,9 +22,7 @@ module.exports.fetchLegislatorVotes = function(params, cb) {
       // console.log(sunlightResponse.headers);
       if (e){
         console.log('e');
-        next(e);
-      } 
-      console.log(sunlightResponse.body.results[20]);
+      };
       cb(sunlightResponse.body);      
     });
 }
@@ -36,12 +32,9 @@ module.exports.fetchLegislators = function(params, cb) {
     .set('X-APIKey', params.api_key)
     .set({  Accept: 'application/json' })
     .end(function(e, sunlightResponse){
-      // console.log(sunlightResponse.headers);
       if (e){
         console.log('e');
-        next(e);
-      } 
-
+      };
       cb(sunlightResponse.body);      
     });
 }
