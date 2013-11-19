@@ -5,8 +5,7 @@ var apikey = require(__dirname + "/config.js").apikey;
 var sunlight = require('./sunlight.js');
 var url = require("url");
 var _ = require("underscore");
-var helpers = require('handlebars-helpers');
-var Handlebars = require('handlebars');
+
 var params;
 var port = process.env.PORT || 3001;
 
