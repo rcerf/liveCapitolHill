@@ -15,8 +15,9 @@ module.exports.fetchActiveBills = function(params, cb) {
     });
 }
 
-module.exports.fetchLegislatorBills = function(params, cb) {
-  superagent.get("http://congress.api.sunlightfoundation.com/" + params.method +"/?" + params.field + params.legislator + "__exists=true")
+module.exports.fetchLegislatorVotes = function(params, cb) {
+  superagent.get("http://congress.api.sunlightfoundation.com//votes?voter_ids." + params.bioguide +
+    "__exists=true&fields=voter_ids,question,required,result,voted_at&per_page=50")
     .set('X-APIKey', params.api_key)
     .set({  Accept: 'application/json' })
     .end(function(e, sunlightResponse){
@@ -25,6 +26,7 @@ module.exports.fetchLegislatorBills = function(params, cb) {
         console.log('e');
         next(e);
       } 
+      console.log(sunlightResponse.body.results[20]);
       cb(sunlightResponse.body);      
     });
 }
@@ -39,6 +41,7 @@ module.exports.fetchLegislators = function(params, cb) {
         console.log('e');
         next(e);
       } 
+
       cb(sunlightResponse.body);      
     });
 }

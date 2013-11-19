@@ -5,6 +5,8 @@ var apikey = require(__dirname + "/config.js").apikey;
 var sunlight = require('./sunlight.js');
 var url = require("url");
 var _ = require("underscore");
+var helpers = require('handlebars-helpers');
+var Handlebars = require('handlebars');
 
 var port = process.env.PORT || 3001;
 
@@ -20,7 +22,6 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
 var params = {};
-
 //**Routes**
 //Bills legislator voted on
 app.get('/',function(req, res){
@@ -32,23 +33,9 @@ app.get('/',function(req, res){
   };
   //Fetch elements from Sunlight API
   sunlight.fetchActiveBills(params, function(data){
-    return res.render('index', data);
+    res.render('index', data);
   });
 });
-
-// app.get('/activeBills',function(req, res){
-// // http://congress.api.sunlightfoundation.com/bills?fields=chamber,titles.title,sponsor_id,history.active_at,last_version,votes&history.active=true
-//   params = {
-//     field: 'chamber,titles.title,sponsor_id,history.active_at,last_version,votes',
-//     filter: 'history',
-//     method: 'bills',
-//     api_key: apikey
-//   };
-//   //Fetch elements from Sunlight API
-//   sunlight.fetchActiveBills(params, function(data){
-//     return res.render('activeBills', data);
-//   });
-// });
 
 
 //Legislator Bio
@@ -62,7 +49,7 @@ app.get('/:zip',function(req, res){
   //Fetch elements from Sunlight API
   sunlight.fetchLegislators(params, function(data){
     data = _.extend(data, params);
-    return res.render('legislator', data);
+    res.render('legislator', data);
   });
 });
 
@@ -71,14 +58,13 @@ app.get('/legislator/:bioguide',function(req, res){
   console.log(req.params);
 
   params = {
-    field: field1,
-    legislator: legislator,
-    method: method,
+    bioguide: req.params.bioguide,
     api_key: apikey
   };
   //Fetch elements from Sunlight API
-  sunlight.fetchLegislatorBills(params, function(data){
-    return res.render('legislator_bill', data);
+  sunlight.fetchLegislatorVotes(params, function(data){
+    res.locals = {bioguide: params.bioguide};
+    res.render('legislatorPost', data);
   });
 });
 

@@ -1,0 +1,35 @@
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  <li><a href="#home" data-toggle="tab">Votes</a></li>
+  <li><a href="#profile" data-toggle="tab">Bill Sponsorships</a></li>
+  <li><a href="#messages" data-toggle="tab">Messages</a></li>
+  <li><a href="#settings" data-toggle="tab">Settings</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="home">
+    {{#results}}
+    <div class="row">
+      <h4>{{question}}</h4>
+    </div>
+      <div class="row">
+        <p class="lead">{{#voter_ids}}{{#bioguide}}{{/voter_ids}}</p>
+      </div>
+      <div class ="row">
+        <div class = "col-xs-4">
+          <p class="text-left">{{required}}</p>
+        </div>
+        <div class = "col-xs-4">
+          <p class= "text-center">{{result}}</p>
+        </div>
+        <div class = "col-xs-4">
+          <p class = "text-right">{{voted_at}}</p>
+        </div>
+      </div>
+    {{/results}}
+  </div>
+  <div class="tab-pane" id="profile">...</div>
+  <div class="tab-pane" id="messages">...</div>
+  <div class="tab-pane" id="settings">...</div>
+</div>
